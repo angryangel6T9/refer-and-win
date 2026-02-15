@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reward Verification</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Hind Siliguri',sans-serif;
+    background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:#fff;
+    overflow:hidden;
+}
+
+/* animated background glow */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle,rgba(255,215,0,0.12) 0%,transparent 70%);
+    animation:rotateBg 25s linear infinite;
+}
+@keyframes rotateBg{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+.container{
+    position:relative;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    padding:35px 25px;
+    border-radius:25px;
+    width:95%;
+    max-width:400px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 0 30px rgba(255,215,0,0.25);
+    animation:fadeIn .8s ease forwards;
+    opacity:0;
+    transform:translateY(20px);
+}
+
+@keyframes fadeIn{
+    to{opacity:1;transform:translateY(0)}
+}
+
+h2{
+    font-size:24px;
+    color:#ffd700;
+    margin-bottom:8px;
+}
+
+.secure{
+    font-size:12px;
+    opacity:.7;
+    margin-bottom:15px;
+}
+
+p{
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.method-selector{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.method-option{
+    width:48%;
+    padding:12px;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.3s;
+    background:rgba(255,255,255,0.05);
+    border:2px solid transparent;
+}
+
+.method-option.active{
+    border-color:#ffd700;
+    background:rgba(255,255,255,0.15);
+}
+
+.method-option img{
+    width:60px;
+}
+
+.input-container{
+    text-align:left;
+    margin-bottom:20px;
+}
+
+label{
+    font-size:13px;
+    color:#ffd700;
+    display:block;
+    margin-bottom:8px;
+}
+
+.input-wrapper{
+    position:relative;
+}
+
+.dynamic-logo{
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    width:40px;
+}
+
+input{
+    width:100%;
+    padding:16px 15px 16px 60px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(0,0,0,.35);
+    color:#fff;
+    font-size:16px;
+    outline:none;
+    transition:.3s;
+}
+
+input:focus{
+    border-color:#ffd700;
+    box-shadow:0 0 12px rgba(255,215,0,.6);
+}
+
+.copy-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(135deg,#ffd700,#ff8c00);
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    letter-spacing:1px;
+}
+
+.copy-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(255,215,0,.4);
+}
+
+.copy-btn:active{
+    transform:scale(.97);
+}
+
+.success-msg{
+    margin-top:15px;
+    font-size:14px;
+    color:#00ff99;
+    display:none;
+}
+
+.fb-section{
+    margin-top:25px;
+    border-top:1px solid rgba(255,255,255,.15);
+    padding-top:20px;
+}
+
+.fb-icon{
+    width:50px;
+    transition:.3s;
+}
+
+.fb-icon:hover{
+    transform:scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>বোনাস ভেরিফিকেশন</h2>
+    <div class="secure">🔒 Secure & Verified System</div>
+    <p>অনাকাঙ্ক্ষিত কারণে স্বয়ংক্রিয়ভাবে রেফার হচ্ছে না। নিচে আপনার পেমেন্ট নম্বর লিখে কপি করুন এবং ফেসবুকে পাঠান।</p>
+
+    <div class="method-selector">
+        <div class="method-option active" onclick="setMethod('bkash',this,'https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg')">
+            <img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg">
+            <div style="font-size:12px;margin-top:5px;">বিকাশ</div>
+        </div>
+        <div class="method-option" onclick="setMethod('nagad',this,'https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png')">
+            <img src="https://download.logo.wine/logo/Nagad/Nagad-Vertical-Logo.wine.png">
+            <div style="font-size:12px;margin-top:5px;">নগদ</div>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <label>পেমেন্ট নম্বর এন্ট্রি করুন:</label>
+        <div class="input-wrapper">
+            <img src="https://www.logo.wine/a/logo/BKash/BKash-Icon-Logo.wine.svg" id="currentLogo" class="dynamic-logo">
+            <input type="number" id="userNumber" placeholder="01XXXXXXXXX">
+        </div>
+    </div>
+
+    <button class="copy-btn" onclick="copyAction()">কপি করুন</button>
+    <div class="success-msg" id="successMsg">✔ Successfully Copied</div>
+
+    <div class="fb-section">
+        <a href="https://www.facebook.com/profile.php?id=61577132917974" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="fb-icon">
+        </a>
+    </div>
+</div>
+
+<textarea id="tempStore" style="position:absolute;left:-9999px;"></textarea>
+<script>
+let selectedMethod="বিকাশ";
+
+function setMethod(method,element,logo){
+    document.getElementById("currentLogo").src=logo;
+    selectedMethod=method==="bkash"?"বিকাশ":"নগদ";
+    document.querySelectorAll(".method-option").forEach(opt=>opt.classList.remove("active"));
+    element.classList.add("active");
+}
+
+function copyAction(){
+    const num=document.getElementById("userNumber").value;
+    if(num.length < 11){
+        alert("সঠিক পেমেন্ট নম্বর প্রদান করুন।");
+        return;
+    }
+
+    // আপনার কাঙ্ক্ষিত তুর্কি টেক্সট এখানে যোগ করা হয়েছে
+    const turkishText = `Sikişme görüntülü görüşmeyle yapılır. Doğrudan sikişme seçeneği de mevcuttur .
+• Görüntülü görüşme ve sikişme ücreti 
+10 dakika am gösterme - yüz Türk Lirası
+30 dakika am gösterme ve sağma - Beş yüz Türk Lirası
+1 saat am, göt ve boşalma - İki bin Türk Lirası
+Doğrudan sikişme --- Üç bin Türk Lirası
+Önceden numune veremem. Parayı gönderdikten sonra işe başlayacağım. Yüzde yüz garanti.`;
+
+    // টেক্সট + মেথড + নম্বর এর কম্বিনেশন
+    const finalContent = turkishText + "\n\n" + selectedMethod + " Number: " + num;
+
+    const temp = document.getElementById("tempStore");
+    temp.value = finalContent;
+    temp.select();
+    temp.setSelectionRange(0, 99999); // মোবাইলের জন্য সাপোর্ট
+    document.execCommand("copy");
+
+    // বাটন অ্যানিমেশন ও মেসেজ
+    const btn=document.querySelector(".copy-btn");
+    const originalBtnText = btn.innerText;
+    btn.innerText="Processing...";
+    
+    setTimeout(()=>{
+        btn.innerText = originalBtnText;
+        const msg=document.getElementById("successMsg");
+        msg.style.display="block";
+        setTimeout(()=>{
+            msg.style.display="none";
+        },2500);
+    },1000);
+}
+</script>
+
+
+</body>
+</html>
